@@ -1,15 +1,22 @@
-Just cd into directory and run:
+# start container
+`docker-compose up`
+or 
+`docker-compose up -d`
 
-docker-compose up -d
+# cleanup after shutdown with Control-C
+`docker-compose rm -f`
+`docker volume rm php-docker-simple_mysql-data`
 
-to stop:
+# Cleanup everything from container
+`docker-compose down -v --rmi all`
 
-docker-compose down
+# to stop:
+`docker-compose down`
 
-NOTE: In order for the app to work you will have to create a database named "company1", a "users" table with the columns "name" and "fav_color" in order for the errors to go away.
+# adminer on port 80 with root/example
 
-You can do this in localhost:8080  (adminer) with "root" as user, "example" as password.  "MySQL" selected for the system, and "db" as the server.
+You can do this in `http://localhost:8080` (adminer) with "root" as user, "example" as password.  "MySQL" selected for the system, and "db" as the server.
 
-Then create the database & table and you should be able to see the php grab the users and display them.
+See `mysql-init-files/init_db.sql` where the required tables are created.
 
-https://truthseekers.io/php-docker-simple-environment/ blog post.
+The db `mydatabase` is created by `MYSQL_DATABASE: mydatabase` in `docker-compose.yml`.
